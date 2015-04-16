@@ -1,0 +1,78 @@
+<br><br><br>
+<div class="col-lg-4">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Incidencias Externas</h3>
+                </div>
+              <div class="list-group">
+                {% for elemento in incidencias %}
+                {% if elemento.origen|stringformat:"s" == "Externa" %}
+                <a href="{% url 'incidencia_detalle' elemento.id %}" class="list-group-item">
+                  {{elemento.titulo}} 
+                </a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Incidencias Internas</h3>
+                 </div>
+              <div class="list-group">
+                {% for elemento in incidencias %}
+                {% if elemento.origen|stringformat:"s" == "Interna" %}
+                <a href="{% url 'incidencia_detalle' elemento.id %}" class="list-group-item">
+                  {{elemento.titulo}} 
+                </a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4">
+              <div class="panel panel-warning">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Esperando Respuesta</h3>
+                 </div>
+              <div class="list-group">
+                {% for elemento in incidencias %}
+                {% if elemento.estatus|stringformat:"s" == "Esperando Respuesta" %}
+                <a href="{% url 'incidencia_detalle' elemento.id %}" class="list-group-item">
+                  {{elemento.titulo}} 
+                </a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4">
+              <div class="panel panel-danger">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Incidencias Urgentes</h3>
+                 </div>
+              <div class="list-group">
+                {% for elemento in incidencias %}
+                {% if elemento.requerimiento|stringformat:"s" == "Urgente" %}
+                <a href="{% url 'incidencia_detalle' elemento.id %}" class="list-group-item">
+                  {{elemento.titulo}} 
+                </a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              </div>
+            </div>
+          </div>
+
+
+          </div>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sistema Gestor de Incidencias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link  href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
+    <link  href="{{ STATIC_URL }}assets/css/bootswatch.min.css" rel="stylesheet" type="text/css" >
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+
+
+{% include 'notificaciones.html' %}
+
+{% include 'cabecera.html' %}
+   <div class="row">
+          <div class="col-lg-5 row-lg-3">
+            <div class="well">
+              <form class="form-horizontal" action="/nueva_incidencia/" method="post">{% csrf_token %}
+                <fieldset>
+                  <div align="center">
+                  <legend>Nueva Incidencia</legend>
+                </div>
+{{formulario.as_p}}
+
+</form>   
+   <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-5">
+                      <button type="submit" class="btn btn-primary">Registrar</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+                </div>
+          </div>
+
+
+
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Ir al Principio</a></li>
+            </ul>
+             </div>
+        </div>
+
+      </footer>
+
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{{ STATIC_URL }}bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}assets/js/bootswatch.js"></script>
+  </body>
+</html>

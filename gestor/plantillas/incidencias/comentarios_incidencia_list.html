@@ -1,0 +1,66 @@
+{% include 'cabecera_principal.html' %}
+
+<body>
+
+{% include 'cabecera.html' %}
+
+<h2>Comentarios realizados a esta incidencia</h2><br>
+
+{% for comentario in object_list %}
+
+{% with clase1="alert-info" clase2="alert-success" clase3="alert-warning" clase4="alert-danger" %}  
+
+                <div class="alert alert-dismissible {% cycle clase1 clase2 clase3 clase4 %}">
+                   <p>
+                    {{comentario.comentario}}
+                  </p>
+<br>
+ <a href="/media/{{comentario.adjunto_img}}"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>
+                   <a href="/media/{{comentario.adjunto_doc}}"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a><br>
+              </div>
+{% endwith %}
+               
+                    <b>Fecha Comentario:</b> {{comentario.fecha}}<br>
+                    <b>Autor Comentario:</b> {{comentario.usuario}}<br>
+                  
+
+
+             {% ifequal request.session.id comentario.usuario_id%}
+                <a href="{% url 'comentario_editar' comentario.id %}" class="btn btn-success">Editar Comentario</a>
+              {% endifequal %}
+            </div>
+        </div>
+      <hr>
+    {% endfor %}
+     {% if is_paginated %}
+        <div class="pagination pagination-centered">
+            <ul>
+                {% if page_obj.has_previous %}
+                <li><a href="{% url 'post_listado' %}?page={{ page_obj.previous_page_number }}">«</a></li>
+                {% endif %}
+                <!-- current page -->
+                <li><a href="javascript:;">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</a></li>
+            <!-- end current page -->
+                {% if page_obj.has_next %}
+                <li><a href="{% url 'post_listado' %}?page={{ page_obj.next_page_number }}">»</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Ir al Principio</a></li>
+            </ul>
+             </div>
+        </div>
+
+      </footer>
+    </div>
+
+{% include 'includes_scripts.html' %}  
+  </body>
+</html>

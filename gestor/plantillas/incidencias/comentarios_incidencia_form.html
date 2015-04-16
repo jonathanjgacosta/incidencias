@@ -1,0 +1,44 @@
+{% include 'cabecera_principal.html' %}
+  <body>
+
+{% include 'cabecera.html' %}
+   <div class="row">
+          <div class="col-lg-4 row-lg-3">
+            <div class="well">
+              <form class="form-horizontal" enctype = 'multipart/form-data' action="." method="post">{% csrf_token %}
+                <fieldset>
+                  <div align="center">
+                  <legend>Comentar Incidencia</legend>
+                </div>
+{{form.as_p}}
+
+</form>   
+   <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-5">
+                      <button type="reset" class="btn btn-default">Cancel</button>
+                      {% if form.instance.id %}
+                      <button type="submit" class="btn btn-success">Editar</button>
+                      {%else%}
+                      <button type="submit" class="btn btn-primary">Comentar</button>
+                      {%endif%}
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+                </div>
+          </div>
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Ir al Principio</a></li>
+            </ul>
+             </div>
+        </div>
+
+      </footer>
+    </div>
+{% include 'includes_scripts.html' %}  
+  </body>
+</html>

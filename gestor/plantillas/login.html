@@ -1,0 +1,60 @@
+{% include 'cabecera_principal.html' %}
+
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">Sistema Gestor de Incidencias</a>
+
+        </div>
+      </div>
+    </div>
+
+{% if error%}
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <strong>Datos Incorrectos,</strong> Verifique sus datos e ingrese nuevamente.
+</div>
+{%endif%}
+
+{% ifnotequal error 1 %}
+<br><br><br>
+{% endifnotequal %}
+
+        <div class="row">
+          <div class="col-lg-4 col-lg-offset-4 row-lg-3">
+            <div class="well">
+              <form class="form-horizontal" action="/iniciar_sesion/" method="post">{% csrf_token %}
+                <fieldset>
+                  <div align="center">
+                  <legend>Iniciar Sesión</legend>
+                </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                      <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                  </div>
+
+                      <div class="form-group">
+                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-10">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-5">
+                      <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+
+{% include 'includes_scripts.html' %}  
+
+  </body>
+</html>

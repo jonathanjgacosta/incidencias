@@ -1,0 +1,67 @@
+{% include 'cabecera_principal.html' %}
+
+<body>
+
+{% include 'cabecera.html' %}
+
+{% for incidencia in object_list %}
+
+                <h2>
+                    <a href="{% url 'incidencia_detalle' incidencia.id %}">{{incidencia.titulo}}</a>
+                </h2>
+                <p>
+                    <b>Fecha de Inicio:</b> {{incidencia.fecha_inicio}}<br>
+                    <b>Requerimiento:</b> {{incidencia.requerimiento}}<br>
+                    <b>Estatus:</b> {{incidencia.estatus}}<br>
+                    <b>Autor Incidencia:</b> {{incidencia.usuario}}<br>
+
+                </p>
+                {% ifequal request.session.id incidencia.usuario_id%}
+                <a href="{% url 'incidencia_editar' incidencia.id %}" class="btn btn-success">Editar Incidencia</a>
+                <a href="{% url 'escalada_nuevo' incidencia.id %}" class="btn btn-warning">Escalar Incidencia</a>
+                {% endifequal %}
+            <div class="btn-group">
+                 <a href="#" class="btn btn-info">Comentarios</a>
+                 <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url 'comentario_listado' incidencia.id %}">Ver Comentarios</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url 'comentario_nuevo' incidencia.id %}">Hacer un Comentario</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+      <hr>
+    {% endfor %}
+     {% if is_paginated %}
+        <div class="pagination pagination-centered">
+            <ul>
+                {% if page_obj.has_previous %}
+                <li><a href="{% url 'incidencia_listado' %}?page={{ page_obj.previous_page_number }}">«</a></li>
+                {% endif %}
+                <!-- current page -->
+                <li><a href="javascript:;">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</a></li>
+            <!-- end current page -->
+                {% if page_obj.has_next %}
+                <li><a href="{% url 'incidencia_listado' %}?page={{ page_obj.next_page_number }}">»</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Ir al Principio</a></li>
+            </ul>
+             </div>
+        </div>
+
+      </footer>
+    </div>
+
+{% include 'includes_scripts.html' %}  
+  </body>
+</html>

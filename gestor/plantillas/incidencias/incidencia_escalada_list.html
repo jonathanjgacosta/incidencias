@@ -1,0 +1,53 @@
+{% include 'cabecera_principal.html' %}
+
+<body>
+
+{% include 'cabecera.html' %}
+
+{% for incidencia_escalada in object_list %}
+
+                <h2>
+                    {{incidencia_escalada.incidencia}}</a>
+                </h2>
+                <p>
+                    <b>Fecha de Escalado:</b> {{incidencia_escalada.fecha_escalada}}<br>
+                    <b>Comentario:</b> {{incidencia_escalada.comentario}}<br>
+
+                </p>
+
+            </div>
+        </div>
+      <hr>
+    {% endfor %}
+     {% if is_paginated %}
+        <div class="pagination pagination-centered">
+            <ul>
+                {% if page_obj.has_previous %}
+                <li><a href="{% url 'incidencia_listado' %}?page={{ page_obj.previous_page_number }}">«</a></li>
+                {% endif %}
+                <!-- current page -->
+                <li><a href="javascript:;">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</a></li>
+            <!-- end current page -->
+                {% if page_obj.has_next %}
+                <li><a href="{% url 'incidencia_listado' %}?page={{ page_obj.next_page_number }}">»</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Ir al Principio</a></li>
+            </ul>
+             </div>
+        </div>
+
+      </footer>
+    </div>
+
+{% include 'includes_scripts.html' %}  
+  </body>
+</html>
